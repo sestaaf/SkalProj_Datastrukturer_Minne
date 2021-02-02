@@ -10,6 +10,20 @@ namespace SkalProj_Datastrukturer_Minne
         /// <param name="args"></param>
         static void Main()
         {
+            // 4.0.1: Stacken fungerar så att "sist in - först ut" och ser till att rensa i minnet
+            //        då den är självunderhållande. Stacken hanterar anrop och metoder med Value Types.
+            //        Heapen hanterar många saker samtidigt utan nån egentlig koll på var allt finns
+            //        och om exekveringen är klar eller ej. Garbage Collector tar hand om det som sen
+            //        ligger och skräpar. Heapen hanterar alltid Reference Types och de Value Types 
+            //        som har deklarerats i en Reference Type.
+            // 4.0.2: Reference Types är exempelvis klasser, objekt, interface, delegater och strängar.
+            //        Value Types finns i System.ValueType, som bool, enum, char, struct och alla
+            //        varianter som håller siffervärden, som exempelvis int och double m fl.
+            //        Reference Types.
+            // 4.0.3: I första exemplet är x och y Value Types och y skriver därför inte över x.
+            //        I det andra exemplet refererar x och y till samma Reference Type och därför
+            //        skriver tilldelningen av MyValue i y över MyValue-värdet i x.
+
 
             while (true)
             {
