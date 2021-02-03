@@ -96,12 +96,22 @@ namespace SkalProj_Datastrukturer_Minne
 
             //switch(nav){...}
 
-            List<string> theList = new List<string>();
+            /*  Svar på frågor uppgift 1:
+             *  =========================
+                2) Listans kapacitet ökar när naästa tillägg kommer efter att den slagit i taket.
+                3) Med det dubbla mot vad den hade som kapacitet innan.
+                4) Skulle väl bli för segt då.
+                5) Nej, men det går att med "theList.TrimExcess()" ta ner den till samma som aktuellt Count-värde.
+                   Det går också att explicit sätta ett värde själv med Capacity som är större än lika som aktuell kapacitet.
+             */
 
+            List<string> theList = new List<string>();
+            
             AddToList("First");
             AddToList("Second");
 
 			Console.WriteLine("\nThis is how the list looks like now:");
+            Console.WriteLine("====================================");
             ShowList();
 			
             bool backToMainMenu = false;
@@ -109,10 +119,10 @@ namespace SkalProj_Datastrukturer_Minne
 
             do
             {
-                Console.WriteLine("\nPlease enter input like \"+Word\" or \"-Word\""
+                Console.WriteLine("Please enter input like \"+Word\" or \"-Word\""
                     + "\nto either Add or Remove \"Word\" to the list."
                     + "\nEnter Q to be returned to the Main Menu.");
-                Console.Write("Input: ");
+                Console.Write("Input > ");
 
                 string input = Console.ReadLine();
                 
@@ -133,9 +143,10 @@ namespace SkalProj_Datastrukturer_Minne
                         else
                         {
                             input = input.Substring(1);
-							Console.WriteLine($"The word {input} will now be Removed from the list (if exist).");
+							Console.WriteLine($"The word '{input}' are now Removed from the list (if exist).");
                             RemoveFromList(input);
-							Console.WriteLine("And the list now looks like this:");
+							Console.WriteLine("\nThe list now looks like this:");
+							Console.WriteLine("=============================");
                             ShowList();
                         }
                         break;
@@ -144,9 +155,10 @@ namespace SkalProj_Datastrukturer_Minne
                         else
                         {
                             input = input.Substring(1);
-                            Console.WriteLine($"The word {input} will now be Added to the list.");
+                            Console.WriteLine($"The word '{input}' are now Added to the list.");
                             AddToList(input);
-                            Console.WriteLine("And the list now looks like this:");
+                            Console.WriteLine("\nThe list now looks like this:");
+                            Console.WriteLine("=============================");
                             ShowList();
                         }
                         break;
@@ -167,7 +179,10 @@ namespace SkalProj_Datastrukturer_Minne
                 foreach (var item in theList)
                 {
                     Console.WriteLine(item);
+
                 }
+                Console.WriteLine("\nCapacity: {0}", theList.Capacity);
+                Console.WriteLine("Count: {0}\n", theList.Count);
             }
             void AddToList(string addToList)
             {
@@ -186,10 +201,69 @@ namespace SkalProj_Datastrukturer_Minne
         static void ExamineQueue()
         {
             /*
-             * Loop this method untill the user inputs something to exit to main menue.
+             * Loop this method until the user inputs something to exit to main menue.
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+
+            do
+            {
+                Console.WriteLine("Please enter input like \"+Word\" or \"-Word\""
+                    + "\nto either Add or Remove \"Word\" to the list."
+                    + "\nEnter Q to be returned to the Main Menu.");
+                Console.Write("Input > ");
+
+                string input = Console.ReadLine();
+
+                try
+                {
+                    nav = input[0];
+                }
+                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                {
+                    Console.Clear();
+                    Console.WriteLine("\nPlease enter some input!");
+                }
+
+                switch (nav)
+                {
+                    case '-':
+                        if (input.Length == 1) Console.WriteLine("Only '-' is entered.");
+                        else
+                        {
+                            input = input.Substring(1);
+                            Console.WriteLine($"The word '{input}' are now Removed from the list (if exist).");
+                            RemoveFromList(input);
+                            Console.WriteLine("\nThe list now looks like this:");
+                            Console.WriteLine("=============================");
+                            ShowList();
+                        }
+                        break;
+                    case '+':
+                        if (input.Length == 1) Console.WriteLine("Only '+' is entered.");
+                        else
+                        {
+                            input = input.Substring(1);
+                            Console.WriteLine($"The word '{input}' are now Added to the list.");
+                            AddToList(input);
+                            Console.WriteLine("\nThe list now looks like this:");
+                            Console.WriteLine("=============================");
+                            ShowList();
+                        }
+                        break;
+                    case 'Q':
+                    case 'q':
+                        backToMainMenu = true;
+                        Console.WriteLine("You will now be returned to the Main Menu.\n");
+                        break;
+                    default:
+                        break;
+                }
+
+
+            } while (!backToMainMenu);
+
+
         }
 
         /// <summary>
