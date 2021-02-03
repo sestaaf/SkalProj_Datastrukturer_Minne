@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SkalProj_Datastrukturer_Minne
 {
     class Program
     {
-        /// <summary>
-        /// The main method, vill handle the menues for the program
-        /// </summary>
-        /// <param name="args"></param>
-        static void Main()
+		private static object input;
+
+		/// <summary>
+		/// The main method, vill handle the menues for the program
+		/// </summary>
+		/// <param name="args"></param>
+		static void Main()
         {
             // 4.0.1: Stacken fungerar så att "sist in - först ut" och ser till att rensa i minnet
             //        då den är självunderhållande. Stacken hanterar anrop och metoder med Value Types.
@@ -32,7 +35,7 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParanthesis"
-                    + "\n0. Exit the application");
+                    + "\n0. Exit the application\n");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
                 {
@@ -77,7 +80,7 @@ namespace SkalProj_Datastrukturer_Minne
         static void ExamineList()
         {
             /*
-             * Loop this method untill the user inputs something to exit to main menue.
+             * Loop this method until the user inputs something to exit to main menue.
              * Create a switch statement with cases '+' and '-'
              * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
              * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
@@ -92,7 +95,90 @@ namespace SkalProj_Datastrukturer_Minne
             //string value = input.substring(1);
 
             //switch(nav){...}
+
+            List<string> theList = new List<string>();
+
+            AddToList("First");
+            AddToList("Second");
+
+			Console.WriteLine("\nThis is how the list looks like now:");
+            ShowList();
+			
+            bool backToMainMenu = false;
+            char nav = ' ';
+
+            do
+            {
+                Console.WriteLine("\nPlease enter input like \"+Word\" or \"-Word\""
+                    + "\nto either Add or Remove \"Word\" to the list."
+                    + "\nEnter Q to be returned to the Main Menu.");
+                Console.Write("Input: ");
+
+                string input = Console.ReadLine();
+                
+                try
+                {
+                    nav = input[0];
+                }
+                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
+                {
+                    Console.Clear();
+                    Console.WriteLine("\nPlease enter some input!");
+                }
+
+                switch (nav)
+                {
+                    case '-':
+                        if (input.Length == 1) Console.WriteLine("Only '-' is entered.");
+                        else
+                        {
+                            input = input.Substring(1);
+							Console.WriteLine($"The word {input} will now be Removed from the list (if exist).");
+                            RemoveFromList(input);
+							Console.WriteLine("And the list now looks like this:");
+                            ShowList();
+                        }
+                        break;
+                    case '+':
+                        if (input.Length == 1) Console.WriteLine("Only '+' is entered.");
+                        else
+                        {
+                            input = input.Substring(1);
+                            Console.WriteLine($"The word {input} will now be Added to the list.");
+                            AddToList(input);
+                            Console.WriteLine("And the list now looks like this:");
+                            ShowList();
+                        }
+                        break;
+                    case 'Q':
+                    case 'q':
+                        backToMainMenu = true;
+						Console.WriteLine("You will now be returned to the Main Menu.\n");
+                        break;
+                    default:
+                        break;
+                }
+
+
+            } while (!backToMainMenu);
+
+            void ShowList()
+            {
+                foreach (var item in theList)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            void AddToList(string addToList)
+            {
+                theList.Add(addToList);
+            }
+            void RemoveFromList(string removeFromList)
+            {
+                theList.Remove(removeFromList);
+            }
         }
+
 
         /// <summary>
         /// Examines the datastructure Queue
