@@ -162,7 +162,7 @@ namespace SkalProj_Datastrukturer_Minne
                             ShowList();
                         }
                         break;
-                    case 'Q':
+                    case 'Q': // Avslutar meny.
                     case 'q':
                         backToMainMenu = true;
 						Console.WriteLine("You will now be returned to the Main Menu.\n");
@@ -206,6 +206,12 @@ namespace SkalProj_Datastrukturer_Minne
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
 
+            // Har inte börjat med uppgift 2, bara kopierat ifall jag kan återanvända nåt.
+            // Nu slut för idag, onsdag.
+            
+            bool backToMainMenu = false;
+            char nav = ' ';
+
             do
             {
                 Console.WriteLine("Please enter input like \"+Word\" or \"-Word\""
@@ -227,31 +233,11 @@ namespace SkalProj_Datastrukturer_Minne
 
                 switch (nav)
                 {
-                    case '-':
-                        if (input.Length == 1) Console.WriteLine("Only '-' is entered.");
-                        else
-                        {
-                            input = input.Substring(1);
-                            Console.WriteLine($"The word '{input}' are now Removed from the list (if exist).");
-                            RemoveFromList(input);
-                            Console.WriteLine("\nThe list now looks like this:");
-                            Console.WriteLine("=============================");
-                            ShowList();
-                        }
+                    case '1': // Ställa sig i kö.
                         break;
-                    case '+':
-                        if (input.Length == 1) Console.WriteLine("Only '+' is entered.");
-                        else
-                        {
-                            input = input.Substring(1);
-                            Console.WriteLine($"The word '{input}' are now Added to the list.");
-                            AddToList(input);
-                            Console.WriteLine("\nThe list now looks like this:");
-                            Console.WriteLine("=============================");
-                            ShowList();
-                        }
+                    case '2': // Lämna kön.
                         break;
-                    case 'Q':
+                    case 'Q': // Avslutar meny.
                     case 'q':
                         backToMainMenu = true;
                         Console.WriteLine("You will now be returned to the Main Menu.\n");
