@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace SkalProj_Datastrukturer_Minne
@@ -207,16 +208,19 @@ namespace SkalProj_Datastrukturer_Minne
             */
 
             // Har inte börjat med uppgift 2, bara kopierat ifall jag kan återanvända nåt.
-            // Nu slut för idag, onsdag.
+            // Nu slut för idag, torsdag.
             
             bool backToMainMenu = false;
             char nav = ' ';
 
             do
             {
-                Console.WriteLine("Please enter input like \"+Word\" or \"-Word\""
-                    + "\nto either Add or Remove \"Word\" to the list."
-                    + "\nEnter Q to be returned to the Main Menu.");
+                Console.WriteLine("\nMenyalternativ 1 = Ställer Kalle i kö."
+                    + "\nMenyalternativ 2 = Ställer Greta i kö."
+                    + "\nMenyalternativ 3 = Ställer Stina i kö."
+                    + "\nMenyalternativ 4 = Ställer Olle i kö."
+                    + "\nMenyalternativ 5 = En person lämnar kön"
+                    + "\n\nEnter Q to be returned to the Main Menu.");
                 Console.Write("Input > ");
 
                 string input = Console.ReadLine();
@@ -231,11 +235,33 @@ namespace SkalProj_Datastrukturer_Minne
                     Console.WriteLine("\nPlease enter some input!");
                 }
 
+                Queue queueICA = new Queue();
+
                 switch (nav)
                 {
-                    case '1': // Ställa sig i kö.
+                    case '1': // Ställer Kalle i kö.
+                        queueICA.Enqueue("Kalle");
+                    case '2': // Ställer Greta i kön.
+                        queueICA.Enqueue("Greta");
                         break;
-                    case '2': // Lämna kön.
+                    case '3': // Ställer Stina i kön.
+                        queueICA.Enqueue("Stina");
+                        break;
+                    case '4': // Ställer Olle i kön.
+                        queueICA.Enqueue("Olle");
+                        break;
+                    case '5': // En person lämnar kön.
+                        try
+                        {
+                            queueICA.Dequeue();
+                        }
+                        catch
+                        {
+                            InvalidOperationException;
+                        }
+                        break;
+                    case '6': // En person lämnar kön.
+                        ShowQueue(queueICA);
                         break;
                     case 'Q': // Avslutar meny.
                     case 'q':
@@ -246,16 +272,28 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
 
-
             } while (!backToMainMenu);
-
-
         }
 
-        /// <summary>
-        /// Examines the datastructure Stack
-        /// </summary>
-        static void ExamineStack()
+        //Queue queueICA = new Queue();
+		private static void ShowQueue(Queue ShowQueueICA)
+		{
+			Console.Write($"People in Queue: {ShowQueueICA.Count}");
+			Console.Write($"\nWho in Queue: ");
+			PrintValues(ShowQueueICA);
+		}
+        private static void PrintValues(IEnumerable printQueueICA)
+        {
+            foreach (Object customers in printQueueICA)
+                Console.Write($"{customers} ");
+                Console.WriteLine();
+        }
+	
+
+		/// <summary>
+		/// Examines the datastructure Stack
+		/// </summary>
+		static void ExamineStack()
         {
             /*
              * Loop this method until the user inputs something to exit to main menue.
