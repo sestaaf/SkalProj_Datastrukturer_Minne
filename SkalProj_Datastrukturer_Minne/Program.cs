@@ -241,6 +241,7 @@ namespace SkalProj_Datastrukturer_Minne
                 {
                     case '1': // Ställer Kalle i kö.
                         queueICA.Enqueue("Kalle");
+                        break;
                     case '2': // Ställer Greta i kön.
                         queueICA.Enqueue("Greta");
                         break;
