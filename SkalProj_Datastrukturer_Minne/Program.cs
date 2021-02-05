@@ -107,94 +107,9 @@ namespace SkalProj_Datastrukturer_Minne
              */
 
             List<string> theList = new List<string>();
-            
-            AddToList("First");
-            AddToList("Second");
 
-			Console.WriteLine("\nThis is how the list looks like now:");
-            Console.WriteLine("====================================");
-            ShowList();
-			
-            bool backToMainMenu = false;
-            char nav = ' ';
-
-            do
-            {
-                Console.WriteLine("Please enter input like \"+Word\" or \"-Word\""
-                    + "\nto either Add or Remove \"Word\" to the list."
-                    + "\nEnter Q to be returned to the Main Menu.");
-                Console.Write("Input > ");
-
-                string input = Console.ReadLine();
-                
-                try
-                {
-                    nav = input[0];
-                }
-                catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
-                {
-                    Console.Clear();
-                    Console.WriteLine("\nPlease enter some input!");
-                }
-
-                switch (nav)
-                {
-                    case '-':
-                        if (input.Length == 1) Console.WriteLine("Only '-' is entered.");
-                        else
-                        {
-                            input = input.Substring(1);
-							Console.WriteLine($"The word '{input}' are now Removed from the list (if exist).");
-                            RemoveFromList(input);
-							Console.WriteLine("\nThe list now looks like this:");
-							Console.WriteLine("=============================");
-                            ShowList();
-                        }
-                        break;
-                    case '+':
-                        if (input.Length == 1) Console.WriteLine("Only '+' is entered.");
-                        else
-                        {
-                            input = input.Substring(1);
-                            Console.WriteLine($"The word '{input}' are now Added to the list.");
-                            AddToList(input);
-                            Console.WriteLine("\nThe list now looks like this:");
-                            Console.WriteLine("=============================");
-                            ShowList();
-                        }
-                        break;
-                    case 'Q': // Avslutar meny.
-                    case 'q':
-                        backToMainMenu = true;
-						Console.WriteLine("You will now be returned to the Main Menu.\n");
-                        break;
-                    default:
-                        break;
-                }
-
-
-            } while (!backToMainMenu);
-
-            void ShowList()
-            {
-                foreach (var item in theList)
-                {
-                    Console.WriteLine(item);
-
-                }
-                Console.WriteLine("\nCapacity: {0}", theList.Capacity);
-                Console.WriteLine("Count: {0}\n", theList.Count);
-            }
-            void AddToList(string addToList)
-            {
-                theList.Add(addToList);
-            }
-            void RemoveFromList(string removeFromList)
-            {
-                theList.Remove(removeFromList);
-            }
+            Methods.ListTest(theList);
         }
-
 
         /// <summary>
         /// Examines the datastructure Queue
