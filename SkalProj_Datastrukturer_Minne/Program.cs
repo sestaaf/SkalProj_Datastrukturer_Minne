@@ -212,14 +212,13 @@ namespace SkalProj_Datastrukturer_Minne
             
             bool backToMainMenu = false;
             char nav = ' ';
+            Queue<string> queueICA = new Queue<string>();
 
             do
             {
-                Console.WriteLine("\nMenyalternativ 1 = Ställer Kalle i kö."
-                    + "\nMenyalternativ 2 = Ställer Greta i kö."
-                    + "\nMenyalternativ 3 = Ställer Stina i kö."
-                    + "\nMenyalternativ 4 = Ställer Olle i kö."
-                    + "\nMenyalternativ 5 = En person lämnar kön"
+                Console.WriteLine("\nMenyalternativ 1 = Ställer Kalle och Greta i kö."
+                    + "\nMenyalternativ 2 = Ställer Stina och Olle i kö."
+                    + "\nMenyalternativ 3 = En person lämnar kön"
                     + "\n\nEnter Q to be returned to the Main Menu.");
                 Console.Write("Input > ");
 
@@ -235,58 +234,43 @@ namespace SkalProj_Datastrukturer_Minne
                     Console.WriteLine("\nPlease enter some input!");
                 }
 
-                Queue queueICA = new Queue();
-
                 switch (nav)
                 {
-                    case '1': // Ställer Kalle i kö.
+                    case '1': // Ställer Kalle och Greta i kö.
                         queueICA.Enqueue("Kalle");
-                        break;
-                    case '2': // Ställer Greta i kön.
                         queueICA.Enqueue("Greta");
                         break;
-                    case '3': // Ställer Stina i kön.
+                    case '2': // Ställer Stina och Olle i kö.
                         queueICA.Enqueue("Stina");
-                        break;
-                    case '4': // Ställer Olle i kön.
                         queueICA.Enqueue("Olle");
                         break;
-                    case '5': // En person lämnar kön.
-                        try
-                        {
-                            queueICA.Dequeue();
-                        }
-                        catch
-                        {
-                            InvalidOperationException;
-                        }
-                        break;
-                    case '6': // En person lämnar kön.
-                        ShowQueue(queueICA);
+                    case '3': // Tar bort en person ur kön.
+                        if (queueICA.Count != 0) queueICA.Dequeue();
                         break;
                     case 'Q': // Avslutar meny.
                     case 'q':
                         backToMainMenu = true;
-                        Console.WriteLine("You will now be returned to the Main Menu.\n");
                         break;
                     default:
                         break;
                 }
 
+                ShowQueue(queueICA);
+
             } while (!backToMainMenu);
         }
 
         //Queue queueICA = new Queue();
-		private static void ShowQueue(Queue ShowQueueICA)
+		private static void ShowQueue(Queue<string> ShowQueueICA)
 		{
-			Console.Write($"People in Queue: {ShowQueueICA.Count}");
+			Console.Write($"\nPeople in Queue: {ShowQueueICA.Count}");
 			Console.Write($"\nWho in Queue: ");
 			PrintValues(ShowQueueICA);
 		}
-        private static void PrintValues(IEnumerable printQueueICA)
+        private static void PrintValues(IEnumerable<string> printQueueICA)
         {
-            foreach (Object customers in printQueueICA)
-                Console.Write($"{customers} ");
+            foreach (string customer in printQueueICA)
+                Console.Write($"{customer} ");
                 Console.WriteLine();
         }
 	
