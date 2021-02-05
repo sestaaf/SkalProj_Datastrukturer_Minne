@@ -15,10 +15,10 @@ namespace SkalProj_Datastrukturer_Minne
             Console.WriteLine("====================================");
             ShowList(theList);
 
-            bool backToMainMenu = false;
-            char nav = ' ';
+			bool backToMainMenu = false;
+			char nav = ' ';
 
-            do
+			do
             {
                 Console.WriteLine("Please enter input like \"+Word\" or \"-Word\""
                     + "\nto either Add or Remove \"Word\" to the list."
@@ -94,12 +94,12 @@ namespace SkalProj_Datastrukturer_Minne
             }
         }
 
-		public static void TestQueue(Queue<string> queueICA)
+        public static void TestQueue(Queue<string> queueICA)
 		{
-            bool backToMainMenu = false;
-            char nav = ' ';
+			bool backToMainMenu = false;
+			char nav = ' ';
 
-            do
+			do
             {
                 Console.WriteLine("\nMenyalternativ 1 = Ställer Kalle och Greta i kö."
                     + "\nMenyalternativ 2 = Ställer Stina och Olle i kö."
@@ -140,33 +140,24 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
 
-                ShowQueue(queueICA);
+                ShowQueueQueue(queueICA);
 
             } while (!backToMainMenu);
-            static void ShowQueue(Queue<string> showQueueICA)
-            {
-                Console.Write($"\nPeople in Queue: {showQueueICA.Count}");
-                Console.Write($"\nWho in Queue: ");
-                PrintValues(showQueueICA);
-            }
-            static void PrintValues(IEnumerable<string> printQueueICA)
-            {
-                foreach (string customer in printQueueICA)
-                    Console.Write($"{customer} ");
-                Console.WriteLine();
-            }
+            
         }
 
 		internal static void TestStack(Stack<string> queueICA)
 		{
-            bool backToMainMenu = false;
-            char nav = ' ';
 
-            do
+			bool backToLastMenu = false;
+			char nav = ' ';
+
+			do
             {
                 Console.WriteLine("\nMenyalternativ 1 = Ställer Kalle och Greta i kö."
                     + "\nMenyalternativ 2 = Ställer Stina och Olle i kö."
                     + "\nMenyalternativ 3 = En person lämnar kön"
+                    + "\nMenyalternativ 4 = Testa att vända en sträng."
                     + "\n\nEnter Q to be returned to the Main Menu.");
                 Console.Write("Input > ");
 
@@ -195,30 +186,63 @@ namespace SkalProj_Datastrukturer_Minne
                     case '3': // Tar bort en person ur kön.
                         if (queueICA.Count != 0) queueICA.Pop();
                         break;
+                    case '4': // Kör reversera sträng.
+                        Stack<string> stringFromUser = new Stack<string>();
+                        ReverseText(stringFromUser);
+                        break;
                     case 'Q': // Avslutar meny.
                     case 'q':
-                        backToMainMenu = true;
+                        backToLastMenu = true;
                         break;
                     default:
                         break;
                 }
 
-                ShowQueue(queueICA);
+                ShowQueueStack(queueICA);
 
-            } while (!backToMainMenu);
+            } while (!backToLastMenu);
 
-            static void ShowQueue(Stack<string> showQueueICA)
-            {
-                Console.Write($"\nPeople in Queue: {showQueueICA.Count}");
-                Console.Write($"\nWho in Queue: ");
-                PrintValues(showQueueICA);
-            }
-            static void PrintValues(IEnumerable<string> printQueueICA)
-            {
-                foreach (string customer in printQueueICA)
-                    Console.Write($"{customer} ");
-                Console.WriteLine();
-            }
+        }
+
+        private static void ReverseText(Stack<string> stringFromUser)
+		{
+			Console.WriteLine("\nPlease input a string to be reversed:");
+
+            string inputFromUser = Console.ReadLine();
+
+            for (var i = 0; i < inputFromUser.Length; i ++)
+			{
+                int arraySize = inputFromUser.Length;
+                
+                // ===========================================================
+                // ** Är så trött i huvet att jag ger upp för idag, fredag! **
+                // ===========================================================
+                //char[] characters[arraySize];
+                //characters[i] = char.TryParse(inputFromUser.Substring(i, 1));
+                //stringFromUser.Push(character[i].ToString());
+			}
+                        
+            ShowQueueStack(stringFromUser);
+        }
+
+        // Here starts methods that are called upon from above.
+        private static void ShowQueueQueue(Queue<string> showQueue)
+        {
+            Console.Write($"\nPeople in Queue: {showQueue.Count}");
+            Console.Write($"\nWho in Queue: ");
+            PrintValues(showQueue);
+        }
+        private static void ShowQueueStack(Stack<string> showQueue)
+        {
+            Console.Write($"\nPeople in Queue: {showQueue.Count}");
+            Console.Write($"\nWho in Queue: ");
+            PrintValues(showQueue);
+        }
+        private static void PrintValues(IEnumerable<string> printQueue)
+        {
+            foreach (string customer in printQueue)
+                Console.Write($"{customer} ");
+            Console.WriteLine();
         }
 	}
 }

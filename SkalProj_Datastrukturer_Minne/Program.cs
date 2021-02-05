@@ -6,7 +6,7 @@ namespace SkalProj_Datastrukturer_Minne
 {
     class Program
     {
-		private static object input;
+		// private static object input;
 
 		/// <summary>
 		/// The main method, vill handle the menues for the program
@@ -141,9 +141,8 @@ namespace SkalProj_Datastrukturer_Minne
 
             Stack<string> queueICA = new Stack<string>();
             Methods.TestStack(queueICA);
-
-
         }
+
             static void CheckParanthesis()
         {
             /*
