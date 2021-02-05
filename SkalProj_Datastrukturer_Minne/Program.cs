@@ -207,9 +207,22 @@ namespace SkalProj_Datastrukturer_Minne
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
 
-            // Har inte börjat med uppgift 2, bara kopierat ifall jag kan återanvända nåt.
-            // Nu slut för idag, torsdag.
-            
+            Queue<string> queueICA = new Queue<string>();
+
+            Methods.TestQueue(queueICA);
+        }
+
+        /// <summary>
+        /// Examines the datastructure Stack
+        /// </summary>
+        static void ExamineStack()
+        {
+            /*
+             * Loop this method until the user inputs something to exit to main menue.
+             * Create a switch with cases to push or pop items
+             * Make sure to look at the stack after pushing and and poping to see how it behaves
+            */
+
             bool backToMainMenu = false;
             char nav = ' ';
             Queue<string> queueICA = new Queue<string>();
@@ -259,35 +272,19 @@ namespace SkalProj_Datastrukturer_Minne
 
             } while (!backToMainMenu);
         }
-
-        //Queue queueICA = new Queue();
-		private static void ShowQueue(Queue<string> ShowQueueICA)
-		{
-			Console.Write($"\nPeople in Queue: {ShowQueueICA.Count}");
-			Console.Write($"\nWho in Queue: ");
-			PrintValues(ShowQueueICA);
-		}
+        private static void ShowQueue(Queue<string> showQueueICA)
+        {
+            Console.Write($"\nPeople in Queue: {showQueueICA.Count}");
+            Console.Write($"\nWho in Queue: ");
+            PrintValues(showQueueICA);
+        }
         private static void PrintValues(IEnumerable<string> printQueueICA)
         {
             foreach (string customer in printQueueICA)
                 Console.Write($"{customer} ");
-                Console.WriteLine();
+            Console.WriteLine();
         }
-	
-
-		/// <summary>
-		/// Examines the datastructure Stack
-		/// </summary>
-		static void ExamineStack()
-        {
-            /*
-             * Loop this method until the user inputs something to exit to main menue.
-             * Create a switch with cases to push or pop items
-             * Make sure to look at the stack after pushing and and poping to see how it behaves
-            */
-        }
-
-        static void CheckParanthesis()
+            static void CheckParanthesis()
         {
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
