@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -178,17 +179,20 @@ namespace SkalProj_Datastrukturer_Minne
                     case '1': // Ställer Kalle och Greta i kö.
                         queueICA.Push("Kalle");
                         queueICA.Push("Greta");
+                        ShowQueueStack(queueICA);
                         break;
                     case '2': // Ställer Stina och Olle i kö.
                         queueICA.Push("Stina");
                         queueICA.Push("Olle");
+                        ShowQueueStack(queueICA);
                         break;
                     case '3': // Tar bort en person ur kön.
                         if (queueICA.Count != 0) queueICA.Pop();
+                        ShowQueueStack(queueICA);
                         break;
                     case '4': // Kör reversera sträng.
-                        Stack<string> stringFromUser = new Stack<string>();
-                        ReverseText(stringFromUser);
+                        Stack<char> testReverseStack = new Stack<char>();
+                        ReverseText(testReverseStack);
                         break;
                     case 'Q': // Avslutar meny.
                     case 'q':
@@ -198,31 +202,36 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
 
-                ShowQueueStack(queueICA);
-
             } while (!backToLastMenu);
 
         }
 
-        private static void ReverseText(Stack<string> stringFromUser)
+        private static void ReverseText(Stack<char> testReverseStack)
 		{
-			Console.WriteLine("\nPlease input a string to be reversed:");
+            Console.WriteLine("\nPlease input a string to be reversed:");
 
             string inputFromUser = Console.ReadLine();
 
-            for (var i = 0; i < inputFromUser.Length; i ++)
-			{
-                int arraySize = inputFromUser.Length;
-                
-                // ===========================================================
-                // ** Är så trött i huvet att jag ger upp för idag, fredag! **
-                // ===========================================================
-                //char[] characters[arraySize];
-                //characters[i] = char.TryParse(inputFromUser.Substring(i, 1));
-                //stringFromUser.Push(character[i].ToString());
-			}
-                        
-            ShowQueueStack(stringFromUser);
+            char[] charArr = inputFromUser.ToCharArray();
+
+            foreach (char ch in charArr)
+            {
+                testReverseStack.Push(ch);
+                // Console.WriteLine(ch);
+            }
+
+            int lengthInput = inputFromUser.Length;
+            string outputToUser = "";
+
+            for (int i = 0; i < lengthInput; i++)
+            {
+                char fromStack;
+                fromStack = testReverseStack.Peek();
+                fromStack = testReverseStack.Pop();
+                outputToUser += fromStack.ToString();
+            }
+
+            Console.WriteLine($"\nEntered string backwards: {outputToUser}");
         }
 
         // Here starts methods that are called upon from above.
