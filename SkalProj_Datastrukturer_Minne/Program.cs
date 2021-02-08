@@ -151,6 +151,10 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
+            //List<char> checkParantheses = new List<char>();
+            Methods.CheckParantheses();
+            // Lagt på is efter samtal med Dimitris 2021-02-08.
+            // Fortsätter till helgen med detta.
         }
 
     }

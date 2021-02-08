@@ -234,6 +234,105 @@ namespace SkalProj_Datastrukturer_Minne
             Console.WriteLine($"\nEntered string backwards: {outputToUser}");
         }
 
+        internal static void CheckParantheses()
+        {
+            Console.WriteLine("\nPlease input a string including signs '{([])}");
+            string inputFromUser = "(";
+          
+            var dict = new Dictionary<char, char>
+            {
+                {'(', ')' },
+                {'[', ']' },
+            };
+
+			char[] charArr = inputFromUser.ToCharArray();
+			int sum = 0;
+			bool inputPairsOK = false;
+			bool inputOrderOK = false;
+
+
+			var stack = new Stack<char>();
+            bool result = false;
+
+            foreach (char ch in inputFromUser)
+            {
+
+            //    //
+
+            //    if (dict.ContainsKey(ch))
+            //        stack.Push(ch);
+            //    else if (dict.ContainsValue(ch) && stack.Count != 0)
+            //    {
+            //       return dict[stack.Pop()] != ch;
+
+            //    }
+            //}
+                        
+                switch (ch)
+				{
+                    
+                    case '(':
+                        sum += 1;
+                        break;
+                    case '{':
+                        sum += 1;
+                        break;
+                    case '[':
+                        sum += 1;
+                        break;
+                    case ')':
+                        sum -= 1;
+                        break;
+                    case '}':
+                        sum -= 1;
+                        break;
+                    case ']':
+                        sum -= 1;
+                        break;
+                    default:
+                        break;
+				}
+			}
+
+
+
+            if (sum != 0) inputPairsOK = false;
+            else
+            {
+                inputPairsOK = true;
+
+                for (int i = 0; i < inputFromUser.Length - 1; i++)
+                {
+					{
+                        for (int j = 1; j <= inputFromUser.Length; j++)
+                        {
+                            if (charArr[i] == '(' && charArr[j] != '}' && charArr[j] != ']')
+                            { inputOrderOK = false; break; }
+                            else if (charArr[i] == '{' && charArr[j] != ')' && charArr[j] != ']')
+                            { inputOrderOK = false; break; }
+                            else if (charArr[i] == '[' && charArr[j] != ')' && charArr[j] != '{')
+                            { inputOrderOK = false; break; }
+                            else if (charArr[i] == '(' && charArr[j] != '(' && charArr[j] != '{' && charArr[j] != '[') continue;
+                            else if (charArr[i] == '{' && charArr[j] != '}') continue;
+                            else if (charArr[i] == '[' && charArr[j] != ']') continue;
+                        }
+					}
+                    if (!inputOrderOK) break;
+                }
+            }
+
+            if (inputPairsOK && inputOrderOK)
+            {
+                Console.WriteLine("The string you entered has the Parantheses in right order.\n");
+            }
+            else
+            {
+                Console.WriteLine("The string you entered is NOT OK as the Parantheses comes in the wrong order.");
+                Console.WriteLine("And/Or the pairs of Parantheses doesn't match\n");
+            }
+
+        }
+
         // Here starts methods that are called upon from above.
         private static void ShowQueueQueue(Queue<string> showQueue)
         {
